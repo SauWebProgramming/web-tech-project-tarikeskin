@@ -1,0 +1,146 @@
+[
+    {
+        "title": "The Shawshank Redemption",
+        "poster_path": "https://image.tmdb.org/t/p/w500/q6y0Go1tsGEsmtFryDOJo3dEmqu.jpg",
+        "vote_average": 9.3,
+        "overview": "Haksız yere cinayetle suçlanan Andy Dufresne'in, Shawshank Hapishanesi'ndeki zorlu yılları ve umuda tutunuşu."
+    },
+    {
+        "title": "The Godfather",
+        "poster_path": "https://image.tmdb.org/t/p/w500/3bhkrj58Vtu7enYsRolD1fZdja1.jpg",
+        "vote_average": 9.2,
+        "overview": "Corleone suç ailesinin yaşlanan patriği, imparatorluğunu isteksiz oğluna devretmenin sancılarını yaşar."
+    },
+    {
+        "title": "The Dark Knight",
+        "poster_path": "https://image.tmdb.org/t/p/w500/qJ2tW6WMUDux911r6m7haRef0WH.jpg",
+        "vote_average": 9.0,
+        "overview": "Batman, Gotham'ı kaosa sürüklemek isteyen psikopat suç dehası Joker ile amansız bir mücadeleye girer."
+    },
+    {
+        "title": "Pulp Fiction",
+        "poster_path": "https://image.tmdb.org/t/p/w500/d5iIlFn5s0ImszYzBPb8JPIfbXD.jpg",
+        "vote_average": 8.9,
+        "overview": "İki tetikçi, bir boksör, bir gangster ve karısının yolları şiddet ve tuhaflıklarla dolu dört hikayede kesişir."
+    },
+    {
+        "title": "Inception",
+        "poster_path": "https://image.tmdb.org/t/p/w500/9gk7admal4zlE0l0Zt509y7rCDe.jpg",
+        "vote_average": 8.8,
+        "overview": "Bir hırsız, insanların rüyalarına girerek sırlarını çalar. Ancak bu sefer görevi bir fikri zihne yerleştirmektir."
+    },
+    {
+        "title": "Fight Club",
+        "poster_path": "https://image.tmdb.org/t/p/w500/pB8BM7pdSp6B6Ih7QZ4DrQ3PmJK.jpg",
+        "vote_average": 8.7,
+        "overview": "Uykusuzluk çeken bir ofis çalışanı, karizmatik sabun satıcısı Tyler Durden ile yeraltı dövüş kulübü kurar."
+    },
+    {
+        "title": "Forrest Gump",
+        "poster_path": "https://image.tmdb.org/t/p/w500/arw2vcBveWOVZr6pxd9XTd1TdQa.jpg",
+        "vote_average": 8.8,
+        "overview": "Saf kalpli Forrest Gump, ABD'nin yakın tarihine tanıklık ederken tek aşkı Jenny'ye kavuşmaya çalışır."
+    },
+    {
+        "title": "The Matrix",
+        "poster_path": "https://image.tmdb.org/t/p/w500/f89U3ADr1oiB1s9GkdPOEpXUk5H.jpg",
+        "vote_average": 8.7,
+        "overview": "Neo, yaşadığı dünyanın aslında makineler tarafından yaratılmış bir simülasyon olduğunu keşfeder."
+    },
+    {
+        "title": "Lord of the Rings: Return of the King",
+        "poster_path": "https://image.tmdb.org/t/p/w500/rCzpDGLbOoPwLjy3OAm5NUPOTrC.jpg",
+        "vote_average": 9.0,
+        "overview": "Orta Dünya'nın kaderi belirlenirken Frodo ve Sam, Yüzük'ü yok etmek için Mordor'a ulaşmaya çalışır."
+    },
+    {
+        "title": "Interstellar",
+        "poster_path": "https://image.tmdb.org/t/p/w500/gEU2QniL6E8AHtMYvCXNF0tOTop.jpg",
+        "vote_average": 8.6,
+        "overview": "İnsanlık yok olma tehlikesiyle karşı karşıyadır. Bir grup astronot, yaşanabilir yeni bir gezegen bulmak için solucan deliğinden geçer."
+    },
+    {
+        "title": "Parasite",
+        "poster_path": "https://image.tmdb.org/t/p/w500/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg",
+        "vote_average": 8.5,
+        "overview": "Fakir Kim ailesi, zengin Park ailesinin hayatına sinsice sızar, ancak işler beklenmedik bir hal alır."
+    },
+    {
+        "title": "Whiplash",
+        "poster_path": "https://image.tmdb.org/t/p/w500/6uSPcdGNA2A6vJmCag5y8AdTIOJ.jpg",
+        "vote_average": 8.5,
+        "overview": "Genç bir baterist, acımasız bir orkestra şefi tarafından mükemmellik sınırlarına kadar zorlanır."
+    },
+    {
+        "title": "Avengers: Endgame",
+        "poster_path": "https://image.tmdb.org/t/p/w500/or06FN3Dka5tukK1e9sl16pB3iy.jpg",
+        "vote_average": 8.3,
+        "overview": "Thanos'un evrenin yarısını yok etmesinin ardından Avengers ekibi her şeyi düzeltmek için son bir şans arar."
+    },
+    {
+        "title": "Joker",
+        "poster_path": "https://image.tmdb.org/t/p/w500/udDclJoHjfjb8Ekgsd4FDteOkCU.jpg",
+        "vote_average": 8.2,
+        "overview": "Dışlanmış Arthur Fleck'in Gotham sokaklarında Joker'e dönüşmesinin karanlık hikayesi."
+    },
+    {
+        "title": "Spider-Man: No Way Home",
+        "poster_path": "https://image.tmdb.org/t/p/w500/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg",
+        "vote_average": 8.0,
+        "overview": "Kimliği açığa çıkan Örümcek-Adam, çoklu evrenlerin kapılarını açan bir büyüyle yüzleşir."
+    },
+    {
+        "title": "Avatar",
+        "poster_path": "https://image.tmdb.org/t/p/w500/kyeqWdyUXW608qlYkRqosgbbJyK.jpg",
+        "vote_average": 7.5,
+        "overview": "Felçli bir asker, Pandora gezegeninde yeni bir bedene ve yeni bir amaca kavuşur."
+    },
+    {
+        "title": "Titanic",
+        "poster_path": "https://image.tmdb.org/t/p/w500/9xjZS2rlVxm8SFx8kPC3aIGCOYQ.jpg",
+        "vote_average": 7.9,
+        "overview": "Genç bir aristokrat, batmaz denilen gemide fakir bir sanatçıya aşık olur."
+    },
+    {
+        "title": "Gladiator",
+        "poster_path": "https://image.tmdb.org/t/p/w500/ty8TGRuvJLPUmAR1H1nRIsgwvim.jpg",
+        "vote_average": 8.2,
+        "overview": "İhanete uğrayan Romalı general Maximus, köle gladyatör olarak intikam için arenaya döner."
+    },
+    {
+        "title": "The Lion King",
+        "poster_path": "https://image.tmdb.org/t/p/w500/sKCr78MXSLixwmZ8DyJLrpMsd15.jpg",
+        "vote_average": 8.3,
+        "overview": "Aslan yavrusu Simba, babasının ardından krallığını geri almak için amcasıyla yüzleşmek zorundadır."
+    },
+    {
+        "title": "Jurassic Park",
+        "poster_path": "https://image.tmdb.org/t/p/w500/oU7Oq2kFAAlGqbU4VoFqER4eES4.jpg",
+        "vote_average": 8.1,
+        "overview": "Klonlanmış dinozorlarla dolu bir tema parkında güvenlik sistemleri çökünce hayatta kalma savaşı başlar."
+    },
+    {
+        "title": "Black Panther",
+        "poster_path": "https://image.tmdb.org/t/p/w500/uxzzxijgPIY7slzFvMotPv8wjKA.jpg",
+        "vote_average": 7.4,
+        "overview": "T'Challa, gizli teknolojik ulus Wakanda'nın kralı olarak tahtını korumak zorundadır."
+    },
+    {
+        "title": "Venom",
+        "poster_path": "https://image.tmdb.org/t/p/w500/2uNW4WbgBXL25BAbXGLnLqX71Sw.jpg",
+        "vote_average": 6.8,
+        "overview": "Gazeteci Eddie Brock, uzaylı bir simbiyoz ile birleşerek korkunç ve güçlü Venom'a dönüşür."
+    },
+    {
+        "title": "Fast & Furious 9",
+        "poster_path": "https://image.tmdb.org/t/p/w500/bOFaAXmWWXC3Rbv4u4uM9ZSzRXP.jpg",
+        "vote_average": 7.2,
+        "overview": "Dom Toretto, geçmişinden gelen kardeşi Jakob ile yüzleşmek için ekibini tekrar toplar."
+    },
+    {
+        "title": "Eternals",
+        "poster_path": "https://image.tmdb.org/t/p/w500/bcCBq9N1sTs7teavE809gNX1eLV.jpg",
+        "vote_average": 7.0,
+        "overview": "Dünya'yı binlerce yıldır koruyan ölümsüz kahramanlar, insanlığı kurtarmak için saklandıkları yerden çıkar."
+    }
+]

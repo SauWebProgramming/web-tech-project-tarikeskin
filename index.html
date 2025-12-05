@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediaVerse</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="floating-shapes" aria-hidden="true">
+            <span style="top:15%; left:10%; width: 20px; height: 20px; animation-delay: 0s; opacity: 0.4;"></span>
+            <span style="top:10%; left:50%; width: 15px; height: 15px; animation-delay: 1s; opacity: 0.5;"></span>
+            <span style="top:5%; left:80%; width: 40px; height: 40px; animation-delay: 3s; opacity: 0.3;"></span>
+
+            <span style="top:45%; left:85%; width: 60px; height: 60px; animation-delay: 2s; animation-duration: 9s;"></span>
+            <span style="top:30%; left:25%; width: 40px; height: 40px; animation-delay: 5s;"></span>
+            <span style="top:60%; left:60%; width: 25px; height: 25px; animation-delay: 3s;"></span>
+            <span style="top:50%; left:10%; width: 10px; height: 10px; animation-delay: 2.5s; opacity: 0.6;"></span>
+            <span style="top:40%; left:5%; width: 30px; height: 30px; animation-delay: 1s; opacity: 0.2;"></span>
+            <span style="top:55%; left:95%; width: 20px; height: 20px; animation-delay: 4s; opacity: 0.4;"></span>
+
+            <span style="top:75%; left:15%; width: 100px; height: 100px; animation-delay: 4s; opacity: 0.1;"></span>
+            <span style="top:85%; left:80%; width: 150px; height: 150px; animation-delay: 0s; animation-duration: 12s; opacity: 0.05;"></span>
+            <span style="top:90%; left:40%; width: 55px; height: 55px; animation-delay: 6s;"></span>
+            <span style="top:20%; left:75%; width: 35px; height: 35px; animation-delay: 1.5s;"></span>
+
+            <span style="top:12%; left:35%; width: 12px; height: 12px; animation-delay: 2s; opacity: 0.4;"></span>
+            <span style="top:25%; left:65%; width: 18px; height: 18px; animation-delay: 0.5s; opacity: 0.3;"></span>
+            <span style="top:65%; left:45%; width: 8px; height: 8px; animation-delay: 3.5s; opacity: 0.7;"></span>
+            <span style="top:80%; left:25%; width: 45px; height: 45px; animation-delay: 5.5s; opacity: 0.15;"></span>
+            <span style="top:35%; left:90%; width: 25px; height: 25px; animation-delay: 1.2s; opacity: 0.25;"></span>
+            <span style="top:95%; left:10%; width: 50px; height: 50px; animation-delay: 4.5s; opacity: 0.1;"></span>
+            <span style="top:5%; left:20%; width: 15px; height: 15px; animation-delay: 2.8s; opacity: 0.5;"></span>
+    </div>
+    
+    <header class="hero">  
+        <h1 class="title">MediaVerse</h1>
+        <p class="subtitle">Explore your best movies and series.</p>
+
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Search for movies..." />
+        </div>
+        
+        <a href="#" class="start-btn">Start exploring</a>
+    </header>
+
+    <main id="movie-section" class="container">
+        <section class="movie-grid" id="movieGrid">
+        </section>
+    </main>
+
+    <div id="movie-modal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <div class="modal-header">
+                <img id="modal-img" src="" alt="">
+                <div class="modal-text">
+                    <h2 id="modal-title">Film Başlığı</h2>
+                    <span id="modal-rating" class="modal-rate">8.5</span>
+                    <p id="modal-desc">Film açıklaması buraya gelecek...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+
