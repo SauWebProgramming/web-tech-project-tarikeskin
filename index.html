@@ -45,10 +45,72 @@
         <a href="#" class="start-btn">Start exploring</a>
     </header>
 
+    <button id="open-fav-sidebar" class="fav-nav-btn">
+    ⭐ Favorilerim (<span id="fav-count">0</span>)
+    </button>
+
+    <div id="fav-sidebar" class="fav-sidebar">
+        <div class="fav-sidebar-header">
+            <h3>Favori Filmlerim</h3>
+            <span class="close-sidebar">&times;</span>
+        </div>
+        <div id="favorites-list-container" class="fav-list-content">
+            </div>
+    </div>
+
     <main id="movie-section" class="container">
         <section class="movie-grid" id="movieGrid">
         </section>
     </main>
+
+    <!-- FILTER TOGGLE BUTTON -->
+
+    <div class="layout">
+
+    <!-- FILTER SIDEBAR -->
+    <aside class="filter-sidebar">
+        <h3>🎬 Filtreler</h3>
+
+        <div class="filter-group">
+            <label>Yıl</label>
+            <select id="yearFilter">
+                <option value="all">Tümü</option>
+            </select>
+        </div>
+
+        <div class="filter-group">
+            <label>Tür</label>
+            <select id="genreFilter">
+                <option value="all">Tümü</option>
+            </select>
+        </div>
+
+        <div class="filter-group">
+            <label>IMDb</label>
+            <input type="range" id="ratingRange" min="0" max="10" step="0.1">
+            <span id="ratingValue">0+</span>
+        </div>
+
+        <div class="filter-group">
+            <label>Sırala</label>
+            <select id="ratingSort">
+                <option value="default">Varsayılan</option>
+            <option value="desc">IMDb ↓</option>
+            <option value="asc">IMDb ↑</option>
+            </select>
+        </div>
+    </aside>
+
+    <!-- MOVIE GRID -->
+    <section class="container">
+        <div id="movie-section">
+            <div id="movieGrid" class="movie-grid"></div>
+        </div>
+    </section>
+
+</div>
+
+
 
     <div id="movie-modal" class="modal-overlay">
         <div class="modal-content">
@@ -58,6 +120,9 @@
                 <div class="modal-text">
                     <h2 id="modal-title">Film Başlığı</h2>
                     <span id="modal-rating" class="modal-rate">8.5</span>
+                    <h4 class="cast-title">Oyuncular</h4>
+                    <ul id="modal-cast" class="cast-list"></ul>
+                    <button id="fav-btn" class="fav-btn">⭐ Favorilere Ekle</button>
                     <p id="modal-desc">Film açıklaması buraya gelecek...</p>
                 </div>
             </div>
