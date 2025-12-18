@@ -37,6 +37,22 @@ const ratingSort = document.getElementById('ratingSort');
 
 
 
+openFavBtn.addEventListener('click', (e) => {
+    e.stopPropagation(); // overlay çakışmasını engeller
+    favSidebar.classList.add('active');
+});
+
+closeSidebar.addEventListener('click', () => {
+    favSidebar.classList.remove('active');
+});
+
+modal.classList.add("active");
+document.body.classList.add("modal-open");
+
+modal.classList.remove("active");
+document.body.classList.remove("modal-open");
+
+
 // --- BAŞLATICI ---
 getMovies();
 
@@ -270,6 +286,19 @@ function showMovies(movies) {
         main.appendChild(movieEl);
     });
 }
+
+closeModalBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    modal.classList.remove('active');
+});
+
+modal.addEventListener('click', (e) => {
+    // Sadece arka siyah alana tıklanırsa kapat
+    if (e.target === modal) {
+        modal.classList.remove('active');
+    }
+});
+
 
 function openModal(movie) {
     currentMovie = movie;

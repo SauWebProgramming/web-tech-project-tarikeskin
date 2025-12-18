@@ -318,12 +318,20 @@ body.scrolled .start-btn {
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 2000;
+    z-index: 9000;
     opacity: 0;
     visibility: hidden;
     transition: 0.3s ease;
     backdrop-filter: blur(5px);
 }
+
+body.modal-open .hero,
+body.modal-open .fav-nav-btn,
+body.modal-open .filter-sidebar {
+    pointer-events: none;
+    opacity: 0;
+}
+
 
 .modal-overlay.active {
     opacity: 1;
@@ -461,6 +469,23 @@ body.scrolled .start-btn {
     font-size: 28px;
     color: #fff;
 }
+
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+
+    font-size: 32px;
+    font-weight: bold;
+    color: #fff;
+
+    cursor: pointer;
+
+    z-index: 9999; /* 🔥 ASIL KURTARAN SATIR */
+}
+
+
+
 
 /* --- FILTER SIDEBAR --- */
 .filter-sidebar {
@@ -603,6 +628,21 @@ body.scrolled .start-btn {
     color: white;
     transform: translateY(-50%) scale(1.1); /* Hover'da biraz büyüsün */
 }
+
+.fav-sidebar {
+    z-index: 3000; /* filtre + overlay üstünde */
+}
+
+.fav-nav-btn {
+    z-index: 3100;
+}
+
+body.modal-open .fav-nav-btn {
+    pointer-events: none;
+    opacity: 0;
+}
+
+
 
 
 .modal-overlay.active .modal-content { transform: scale(1); }

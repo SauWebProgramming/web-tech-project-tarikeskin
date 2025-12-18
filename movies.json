@@ -35,15 +35,7 @@
     "overview": "İki tetikçi, bir boksör, bir gangster ve karısının yolları şiddet ve tuhaflıklarla dolu dört hikayede kesişir.",
     "cast": ["John Travolta", "Samuel L. Jackson", "Uma Thurman"]
   },
-  {
-    "title": "Inception",
-    "poster_path": "https://image.tmdb.org/t/p/w500/9gk7admal4zlE0l0Zt509y7rCDe.jpg",
-    "vote_average": 8.8,
-    "year": 2010,
-    "genres": ["Sci-Fi", "Action", "Thriller"],
-    "overview": "Bir hırsız, insanların rüyalarına girerek sırlarını çalar. Ancak bu sefer görevi bir fikri zihne yerleştirmektir.",
-    "cast": ["Leonardo DiCaprio", "Joseph Gordon-Levitt", "Tom Hardy"]
-  },
+
   {
     "title": "Fight Club",
     "poster_path": "https://image.tmdb.org/t/p/w500/pB8BM7pdSp6B6Ih7QZ4DrQ3PmJK.jpg",
@@ -80,15 +72,7 @@
     "overview": "Orta Dünya'nın kaderi belirlenirken Frodo ve Sam, Yüzük'ü yok etmek için Mordor'a ulaşmaya çalışır.",
     "cast": ["Elijah Wood", "Viggo Mortensen", "Ian McKellen"]
   },
-  {
-    "title": "Interstellar",
-    "poster_path": "https://image.tmdb.org/t/p/w500/gEU2QniL6E8AHtMYvCXNF0tOTop.jpg",
-    "vote_average": 8.6,
-    "year": 2014,
-    "genres": ["Sci-Fi", "Drama"],
-    "overview": "İnsanlık yok olma tehlikesiyle karşı karşıyadır. Bir grup astronot, yaşanabilir yeni bir gezegen bulmak için solucan deliğinden geçer.",
-    "cast": ["Matthew McConaughey", "Anne Hathaway", "Jessica Chastain"]
-  },
+
   {
     "title": "Parasite",
     "poster_path": "https://image.tmdb.org/t/p/w500/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg",
@@ -98,15 +82,7 @@
     "overview": "Fakir Kim ailesi, zengin Park ailesinin hayatına sinsice sızar, ancak işler beklenmedik bir hal alır.",
     "cast": ["Song Kang-ho", "Lee Sun-kyun", "Cho Yeo-jeong"]
   },
-  {
-    "title": "Whiplash",
-    "poster_path": "https://image.tmdb.org/t/p/w500/6uSPcdGNA2A6vJmCag5y8AdTIOJ.jpg",
-    "vote_average": 8.5,
-    "year": 2014,
-    "genres": ["Drama", "Music"],
-    "overview": "Genç bir baterist, acımasız bir orkestra şefi tarafından mükemmellik sınırlarına kadar zorlanır.",
-    "cast": ["Miles Teller", "J.K. Simmons", "Melissa Benoist"]
-  },
+ 
   {
     "title": "Avengers: Endgame",
     "poster_path": "https://image.tmdb.org/t/p/w500/or06FN3Dka5tukK1e9sl16pB3iy.jpg",
@@ -170,15 +146,7 @@
     "overview": "Aslan yavrusu Simba, babasının ardından krallığını geri almak için amcasıyla yüzleşmek zorundadır.",
     "cast": ["Matthew Broderick", "James Earl Jones", "Jeremy Irons"]
   },
-  {
-    "title": "Jurassic Park",
-    "poster_path": "https://image.tmdb.org/t/p/w500/oU7Oq2kFAAlGqbU4VoFqER4eES4.jpg",
-    "vote_average": 8.1,
-    "year": 1993,
-    "genres": ["Adventure", "Sci-Fi"],
-    "overview": "Klonlanmış dinozorlarla dolu bir tema parkında güvenlik sistemleri çökünce hayatta kalma savaşı başlar.",
-    "cast": ["Sam Neill", "Laura Dern", "Jeff Goldblum"]
-  },
+  
   {
     "title": "Black Panther",
     "poster_path": "https://image.tmdb.org/t/p/w500/uxzzxijgPIY7slzFvMotPv8wjKA.jpg",
@@ -205,14 +173,5 @@
     "genres": ["Action", "Crime"],
     "overview": "Dom Toretto, geçmişinden gelen kardeşi Jakob ile yüzleşmek için ekibini tekrar toplar.",
     "cast": ["Vin Diesel", "John Cena", "Michelle Rodriguez"]
-  },
-  {
-    "title": "Eternals",
-    "poster_path": "https://image.tmdb.org/t/p/w500/bcCBq9N1sTs7teavE809gNX1eLV.jpg",
-    "vote_average": 7.0,
-    "year": 2021,
-    "genres": ["Action", "Sci-Fi"],
-    "overview": "Dünya'yı binlerce yıldır koruyan ölümsüz kahramanlar, insanlığı kurtarmak için saklandıkları yerden çıkar.",
-    "cast": ["Gemma Chan", "Richard Madden", "Angelina Jolie"]
   }
 ]
