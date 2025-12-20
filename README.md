@@ -33,3 +33,8 @@ movies.json: (Opsiyonel) Test veya varsayılan veriler için yerel veri seti.
 📦 Kurulum ve Çalıştırma
 
 Bu projeyi yerel bilgisayarınızda çalıştırmak için bir web sunucusuna (Local Server) ihtiyacınız vardır (CORS politikaları nedeniyle).
+Lütfen aşağıdaki yöntemlerden biriyle açınız:
+
+1) VS Code → index.html → Open with Live Server
+2) npm install -g live-server
+   live-server
