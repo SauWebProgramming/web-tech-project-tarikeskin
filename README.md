@@ -20,6 +20,15 @@ TMDB API: Geniş kapsamlı film ve dizi veri kaynağı.
 
 Local Storage: Favori listesinin tarayıcı kapansa dahi korunması için yerel depolama.
 
+📖 Proje Yapısı
+index.html: Ana sayfa yapısı.
+
+style.css: Modern ve animasyonlu tasarım kodları.
+
+script.js: API entegrasyonu ve uygulama işlevselliği.
+
+movies.json: (Opsiyonel) Test veya varsayılan veriler için yerel veri seti.
+
 📦 Kurulum ve Çalıştırma
 
 Bu projeyi yerel bilgisayarınızda çalıştırmak için bir web sunucusuna (Local Server) ihtiyacınız vardır (CORS politikaları nedeniyle).
