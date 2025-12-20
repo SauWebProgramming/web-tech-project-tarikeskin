@@ -1,376 +1,282 @@
-// --- ELEMENTLER ---
-const LOCAL_JSON_PATH = './movies.json';
-const main = document.getElementById('movieGrid');
-const form = document.getElementById('searchInput');
-const startBtn = document.querySelector('.start-btn');
-const container = document.querySelector('.container');
+document.addEventListener('DOMContentLoaded', () => {
+    //DOM Elements
+    const movieGrid = document.getElementById('movieGrid');
+    const searchInput = document.getElementById('searchInput'); 
+    const yearFilter = document.getElementById('yearFilter');
+    const genreFilter = document.getElementById('genreFilter');
+    const ratingRange = document.getElementById('ratingRange');
+    const ratingValue = document.getElementById('ratingValue');
+    const ratingSort = document.getElementById('ratingSort');
 
-// Modal Elementleri
-const modal = document.getElementById('movie-modal');
-const closeModalBtn = document.querySelector('.close-btn');
-const modalTitle = document.getElementById('modal-title');
-const modalImg = document.getElementById('modal-img');
-const modalDesc = document.getElementById('modal-desc');
-const modalRate = document.getElementById('modal-rating');
-const modalCast = document.getElementById('modal-cast');
-const favBtn = document.getElementById('fav-btn');
+    //Modal Elements
+    const modal = document.getElementById('movie-modal');
+    const closeModalBtn = document.querySelector('.close-btn');
+    const modalImg = document.getElementById('modal-img');
+    const modalTitle = document.getElementById('modal-title');
+    const modalRating = document.getElementById('modal-rating');
+    const modalYear = document.getElementById('modal-year');
+    const modalGenre = document.getElementById('modal-genre');
+    const modalCast = document.getElementById('modal-cast');
+    const modalDesc = document.getElementById('modal-desc');
+    const favBtn = document.getElementById('fav-btn');
 
-// Favori Sidebar Elementleri
-const favSidebar = document.getElementById('fav-sidebar');
-const openFavBtn = document.getElementById('open-fav-sidebar');
-const closeSidebar = document.querySelector('.close-sidebar');
-const favListContainer = document.getElementById('favorites-list-container');
-const favCountLabel = document.getElementById('fav-count');
+    //Sidebar Elements
+    const favSidebar = document.getElementById('fav-sidebar');
+    const openFavSidebarBtn = document.getElementById('open-fav-sidebar');
+    const closeFavSidebarBtn = document.querySelector('.close-sidebar');
+    const favListContainer = document.getElementById('favorites-list-container');
+    const favCountSpan = document.getElementById('fav-count');
 
-let allMovies = []; 
-let currentMovie = null;
-
-
-
-const filterToggle = document.querySelector('.filter-toggle');
-const filterSidebar = document.querySelector('.filter-sidebar');
-const yearFilter = document.getElementById('yearFilter');
-const genreFilter = document.getElementById('genreFilter');
-const ratingRange = document.getElementById('ratingRange');
-const ratingValue = document.getElementById('ratingValue');
-const ratingSort = document.getElementById('ratingSort');
-
-
-
-openFavBtn.addEventListener('click', (e) => {
-    e.stopPropagation(); // overlay çakışmasını engeller
-    favSidebar.classList.add('active');
-});
-
-closeSidebar.addEventListener('click', () => {
-    favSidebar.classList.remove('active');
-});
-
-modal.classList.add("active");
-document.body.classList.add("modal-open");
-
-modal.classList.remove("active");
-document.body.classList.remove("modal-open");
-
-
-// --- BAŞLATICI ---
-getMovies();
-
-async function getMovies() {
-    try {
-        const res = await fetch(LOCAL_JSON_PATH);
-        const data = await res.json();
-        allMovies = data; 
-        showMovies(allMovies);
-        populateFilters(allMovies);
-        renderFavoritesSidebar(); // Sayfa açıldığında favorileri yükle
-    } catch (error) {
-        console.error("Hata:", error);
-    }
-}
-
-// --- FAVORİ İŞLEMLERİ ---
-
-function getFavorites() {
-    const favs = localStorage.getItem('favorites');
-    return favs ? JSON.parse(favs) : [];
-}
-
-function updateFavButton() {
-    if (!currentMovie) return;
-    const favorites = getFavorites();
-    const isFav = favorites.includes(currentMovie.title);
-
-    if (isFav) {
-        favBtn.innerHTML = '❌ Favorilerden Çıkar';
-        favBtn.style.background = 'linear-gradient(90deg, #ff4e4e, #ff8a65)';
-    } else {
-        favBtn.innerHTML = '⭐ Favorilere Ekle';
-        favBtn.style.background = 'linear-gradient(90deg, gold, orange)';
-    }
-}
-
-function renderFavoritesSidebar() {
-    const favorites = getFavorites();
-    favCountLabel.innerText = favorites.length;
-    favListContainer.innerHTML = '';
-
-    if (favorites.length === 0) {
-        favListContainer.innerHTML = '<p style="opacity:0.5; text-align:center;">Henüz favori yok.</p>';
-        return;
-    }
-
-    favorites.forEach(title => {
-        const movie = allMovies.find(m => m.title === title);
-        if (movie) {
-            const div = document.createElement('div');
-            div.className = 'fav-item';
-            div.innerHTML = `
-                <img src="${movie.poster_path}" alt="">
-                <div>
-                    <h4>${movie.title}</h4>
-                    <small style="color:var(--accent-yellow)">⭐ ${movie.vote_average}</small>
-                </div>
-            `;
-            div.onclick = () => openModal(movie);
-            favListContainer.appendChild(div);
-        }
-    });
-}
-//filtreleme için
-function populateFilters(movies) {
-    const years = [...new Set(movies.map(m => m.year))].sort((a,b) => b-a);
-    const genres = [...new Set(movies.flatMap(m => m.genres))].sort();
-
-    years.forEach(year => {
-        const opt = document.createElement('option');
-        opt.value = year;
-        opt.textContent = year;
-        yearFilter.appendChild(opt);
-    });
-
-    genres.forEach(genre => {
-        const opt = document.createElement('option');
-        opt.value = genre;
-        opt.textContent = genre;
-        genreFilter.appendChild(opt);
-    });
-}
-
-function applyFilters() {
-    let filtered = [...allMovies];
-
-    // Yıl
-    if (yearFilter.value !== 'all') {
-        filtered = filtered.filter(m => m.year == yearFilter.value);
-    }
-
-    // Tür
-    if (genreFilter.value !== 'all') {
-        filtered = filtered.filter(m => m.genres.includes(genreFilter.value));
-    }
-
-    // IMDB Sıralama
-    if (ratingSort.value === 'asc') {
-        filtered.sort((a,b) => a.vote_average - b.vote_average);
-    } else if (ratingSort.value === 'desc') {
-        filtered.sort((a,b) => b.vote_average - a.vote_average);
-    }
-
-    showMovies(filtered);
-}
-
-yearFilter.addEventListener('change', applyFilters);
-genreFilter.addEventListener('change', applyFilters);
-ratingSort.addEventListener('change', applyFilters);
-
-
-
-function populateFilters(movies) {
-    const years = [...new Set(movies.map(m => m.year))].sort((a,b)=>b-a);
-    const genres = [...new Set(movies.flatMap(m => m.genres))].sort();
-
-    years.forEach(y => {
-        yearFilter.innerHTML += `<option value="${y}">${y}</option>`;
-    });
-
-    genres.forEach(g => {
-        genreFilter.innerHTML += `<option value="${g}">${g}</option>`;
-    });
-}
-
-
-// --- Mevcut favBtn.addEventListener kısmını BUNUNLA DEĞİŞTİRİN ---
-
-favBtn.addEventListener('click', () => {
-    // 1. Tıklama Animasyonunu Başlat
-    favBtn.classList.add('animating');
-    // 400ms sonra (CSS'deki süreyle aynı) animasyon sınıfını kaldır
-    setTimeout(() => favBtn.classList.remove('animating'), 400);
-
-    // 2. Favori Ekleme/Çıkarma Mantığı
-    let favorites = getFavorites();
-    const movieTitle = currentMovie.title;
-
-    if (favorites.includes(movieTitle)) {
-        // Zaten varsa, silme fonksiyonunu çağır
-        removeFavoriteMovie(movieTitle);
-    } else {
-        // Yoksa ekle
-        favorites.push(movieTitle);
-        localStorage.setItem('favorites', JSON.stringify(favorites));
-        updateFavButton();
-        renderFavoritesSidebar();
-    }
-});
-// --- script.js dosyasının en altına ekleyin ---
-
-// Belirtilen başlığa sahip filmi favorilerden siler
-function removeFavoriteMovie(title) {
-    let favorites = getFavorites();
-    favorites = favorites.filter(t => t !== title);
-    localStorage.setItem('favorites', JSON.stringify(favorites));
-    
-    // Sidebar'ı güncelle
-    renderFavoritesSidebar();
-
-    // Eğer şu an açık olan modal bu filme aitse, modalın içindeki butonu da güncelle
-    if (currentMovie && currentMovie.title === title) {
-        updateFavButton();
-    }
-}
-
-// --- Mevcut renderFavoritesSidebar fonksiyonunuBUNUNLA DEĞİŞTİRİN ---
-
-function renderFavoritesSidebar() {
-    const favorites = getFavorites();
-    favCountLabel.innerText = favorites.length;
-    favListContainer.innerHTML = '';
-
-    if (favorites.length === 0) {
-        favListContainer.innerHTML = '<p style="opacity:0.5; text-align:center;">Henüz favori yok.</p>';
-        return;
-    }
-
-    favorites.forEach(title => {
-        const movie = allMovies.find(m => m.title === title);
-        if (movie) {
-            const div = document.createElement('div');
-            div.className = 'fav-item';
-            // HTML yapısına silme butonunu (span.remove-fav-item) ekledik
-            div.innerHTML = `
-                <img src="${movie.poster_path}" alt="">
-                <div>
-                    <h4>${movie.title}</h4>
-                    <small style="color:var(--accent-yellow)">⭐ ${movie.vote_average}</small>
-                </div>
-                <span class="remove-fav-item" title="Listeden Çıkar">&times;</span>
-            `;
-
-            // --- TIKLAMA MANTIĞI ÖNEMLİ ---
-            
-            // 1. Silme butonuna tıklanırsa:
-            const removeBtn = div.querySelector('.remove-fav-item');
-            removeBtn.onclick = (e) => {
-                // e.stopPropagation(): Tıklamanın üst elemente (div.fav-item) geçmesini engeller.
-                // Böylece silme butonuna basınca modal AÇILMAZ.
-                e.stopPropagation(); 
-                removeFavoriteMovie(movie.title);
-            };
-
-            // 2. Kartın geri kalanına tıklanırsa (silme butonu hariç):
-            div.onclick = () => {
-                openModal(movie);
-            };
-
-            favListContainer.appendChild(div);
-        }
-    });
-}
-
-// --- DİĞER FONKSİYONLAR ---
-
-function showMovies(movies) {
-    main.innerHTML = '';
-    movies.forEach((movie, index) => {
-        const movieEl = document.createElement('div');
-        movieEl.classList.add('movie-card', 'show');
-        movieEl.innerHTML = `
-            <img src="${movie.poster_path}" alt="${movie.title}">
-            <div class="movie-info">
-                <h3>${movie.title}</h3>
-                <span class="${getClassByRate(movie.vote_average)}">${movie.vote_average.toFixed(1)}</span>
-            </div>
-        `;
-        movieEl.onclick = () => openModal(movie);
-        main.appendChild(movieEl);
-    });
-}
-
-closeModalBtn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    modal.classList.remove('active');
-});
-
-modal.addEventListener('click', (e) => {
-    // Sadece arka siyah alana tıklanırsa kapat
-    if (e.target === modal) {
-        modal.classList.remove('active');
-    }
-});
-
-
-function openModal(movie) {
-    currentMovie = movie;
-    modalTitle.innerText = movie.title;
-    modalDesc.innerText = movie.overview;
-    modalImg.src = movie.poster_path;
-    modalRate.innerText = `IMDB: ${movie.vote_average}`;
-    
-    // Oyuncuları listele (Hata düzeltildi)
-    modalCast.innerHTML = '';
-    movie.cast.forEach(actor => {
-        const li = document.createElement('li');
-        li.textContent = actor;
-        modalCast.appendChild(li);
-    });
-
-    updateFavButton();
-    modal.classList.add('active');
-}
-
-function getClassByRate(vote) {
-    if(vote >= 8) return 'green';
-    else if(vote >= 5) return 'orange';
-    else return 'red';
-}
-
-// --- SCROLL ANIMASYONU KONTROLÜ ---
-
-window.addEventListener('scroll', () => {
+    //Navigation & Filter Elements
     const hero = document.querySelector('.hero');
-    // Eğer kullanıcı 100px'den fazla kaydırdıysa animasyonu başlat
-    if (window.scrollY > 100) {
-        document.body.classList.add('scrolled');
-    } else {
-        document.body.classList.remove('scrolled');
+    const filterSidebar = document.getElementById('filterSidebar');
+    const filterToggleBtn = document.getElementById('filter-toggle');
+    const closeFilterBtn = document.getElementById('closeFilterBtn');
+    const startBtn = document.querySelector('.start-btn'); // For smooth scroll event check
+
+    
+    let allMovies = [];
+    let favorites = JSON.parse(localStorage.getItem('mediaVerseFavs')) || [];
+
+    //Initialization
+    updateFavCount();
+    renderFavorites();
+
+    fetch('movies.json')
+        .then(response => response.json())
+        .then(data => {
+            allMovies = data;
+            populateFilters(allMovies);
+            renderMovies(allMovies);
+        })
+        .catch(err => console.error('Error loading movies:', err));
+
+    
+    searchInput.addEventListener('input', filterMovies);
+    yearFilter.addEventListener('change', filterMovies);
+    genreFilter.addEventListener('change', filterMovies);
+    ratingRange.addEventListener('input', (e) => {
+        ratingValue.textContent = `${e.target.value}+`;
+        filterMovies();
+    });
+    ratingSort.addEventListener('change', sortMovies);
+
+    
+    closeModalBtn.addEventListener('click', () => {
+        modal.classList.remove('active');
+    });
+
+    window.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            modal.classList.remove('active');
+        }
+    });
+
+    
+    openFavSidebarBtn.addEventListener('click', () => {
+        favSidebar.classList.add('active');
+    });
+
+    closeFavSidebarBtn.addEventListener('click', () => {
+        favSidebar.classList.remove('active');
+    });
+
+    // Sticky Header & Scroll Effects
+    const heroHeight = hero.offsetHeight;
+
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 100) {
+            hero.classList.add('sticky');
+            document.body.style.paddingTop = heroHeight + 'px'; 
+        } else {
+            hero.classList.remove('sticky');
+            document.body.style.paddingTop = '0';
+        }
+    });
+
+    // Filter Sidebar Toggle
+    const layout = document.querySelector('.layout');
+
+    filterToggleBtn.addEventListener('click', () => {
+        filterSidebar.classList.add('active');
+        layout.classList.add('sidebar-active');
+    });
+
+    closeFilterBtn.addEventListener('click', () => {
+        filterSidebar.classList.remove('active');
+        layout.classList.remove('sidebar-active');
+    });
+
+
+
+    function populateFilters(movies) {
+        // Years
+        const years = [...new Set(movies.map(m => m.year))].sort((a, b) => b - a);
+        years.forEach(year => {
+            const option = document.createElement('option');
+            option.value = year;
+            option.textContent = year;
+            yearFilter.appendChild(option);
+        });
+
+        // Genres
+        const genres = new Set();
+        movies.forEach(movie => {
+            movie.genres.forEach(g => genres.add(g));
+        });
+        [...genres].sort().forEach(genre => {
+            const option = document.createElement('option');
+            option.value = genre;
+            option.textContent = genre;
+            genreFilter.appendChild(option);
+        });
+    }
+
+    function renderMovies(movies) {
+        movieGrid.innerHTML = '';
+        if (movies.length === 0) {
+            movieGrid.innerHTML = '<p style="grid-column: 1/-1; text-align: center;">No movies found.</p>';
+            return;
+        }
+
+        movies.forEach(movie => {
+            const card = document.createElement('article');
+            card.classList.add('movie-card');
+            card.innerHTML = `
+                <img src="${movie.poster_path}" alt="${movie.title}" loading="lazy">
+                <div class="movie-info">
+                    <h3>${movie.title}</h3>
+                    <div class="movie-meta">
+                        <span>${movie.year}</span>
+                        <span class="rating">⭐ ${movie.vote_average}</span>
+                    </div>
+                </div>
+            `;
+            card.addEventListener('click', () => openModal(movie));
+            movieGrid.appendChild(card);
+        });
+    }
+
+    function filterMovies() {
+        const searchTerm = searchInput.value.toLowerCase();
+        const selectedYear = yearFilter.value;
+        const selectedGenre = genreFilter.value;
+        const minRating = parseFloat(ratingRange.value);
+
+        let filtered = allMovies.filter(movie => {
+            const matchesSearch = movie.title.toLowerCase().includes(searchTerm);
+            const matchesYear = selectedYear === 'all' || movie.year == selectedYear;
+            const matchesGenre = selectedGenre === 'all' || movie.genres.includes(selectedGenre);
+            const matchesRating = movie.vote_average >= minRating;
+
+            return matchesSearch && matchesYear && matchesGenre && matchesRating;
+        });
+
+        sortHelper(filtered);
+    }
+
+    function sortMovies() {
+        filterMovies(); 
+    }
+
+    function sortHelper(moviesToList) {
+        const sortType = ratingSort.value;
+
+        if (sortType === 'desc') {
+            moviesToList.sort((a, b) => b.vote_average - a.vote_average);
+        } else if (sortType === 'asc') {
+            moviesToList.sort((a, b) => a.vote_average - b.vote_average);
+        }
+        
+
+        renderMovies(moviesToList);
+    }
+
+    function openModal(movie) {
+        modalImg.src = movie.poster_path;
+        modalTitle.textContent = movie.title;
+        modalRating.textContent = `⭐ ${movie.vote_average}`;
+        modalYear.textContent = movie.year;
+        modalGenre.textContent = movie.genres.join(', ');
+        modalDesc.textContent = movie.overview;
+
+        modalCast.innerHTML = '';
+        movie.cast.forEach(actor => {
+            const li = document.createElement('li');
+            li.textContent = actor;
+            modalCast.appendChild(li);
+        });
+
+        updateFavButtonState(movie.title);
+
+      
+        favBtn.onclick = () => toggleFavorite(movie);
+
+        modal.classList.add('active');
+    }
+
+    function updateFavButtonState(title) {
+        const isFav = favorites.some(fav => fav.title === title);
+        if (isFav) {
+            favBtn.textContent = '❌ Favorilerden Çıkar';
+            favBtn.classList.add('active');
+        } else {
+            favBtn.textContent = '⭐ Favorilere Ekle';
+            favBtn.classList.remove('active');
+        }
+    }
+
+    function toggleFavorite(movie) {
+        const index = favorites.findIndex(fav => fav.title === movie.title);
+
+        if (index === -1) {
+            favorites.push(movie);
+        } else {
+            favorites.splice(index, 1);
+        }
+
+        localStorage.setItem('mediaVerseFavs', JSON.stringify(favorites));
+        updateFavButtonState(movie.title);
+        updateFavCount();
+        renderFavorites();
+    }
+
+    function updateFavCount() {
+        favCountSpan.textContent = favorites.length;
+    }
+
+    function renderFavorites() {
+        favListContainer.innerHTML = '';
+        if (favorites.length === 0) {
+            favListContainer.innerHTML = '<p style="text-align:center; padding: 20px; opacity: 0.7;">Henüz favori eklemediniz.</p>';
+            return;
+        }
+
+        favorites.forEach(movie => {
+            const div = document.createElement('div');
+            div.classList.add('fav-item');
+            div.innerHTML = `
+                <img src="${movie.poster_path}" alt="${movie.title}">
+                <div class="fav-item-info">
+                    <h4>${movie.title}</h4>
+                    <span style="font-size:0.8rem; color:#ffd700;">⭐ ${movie.vote_average}</span>
+                </div>
+                <button class="remove-fav">&times;</button>
+            `;
+
+            // Remove button click
+            div.querySelector('.remove-fav').addEventListener('click', (e) => {
+                e.stopPropagation(); 
+                toggleFavorite(movie);
+            });
+
+            // Make favorite item clickable to open details too
+            div.addEventListener('click', (e) => {
+                if (e.target.classList.contains('remove-fav')) return;
+                openModal(movie);
+            });
+
+            favListContainer.appendChild(div);
+        });
     }
 });
-
-// "Start Exploring" butonuna tıklandığında kaydırmayı başlatırken 
-// animasyonun devreye girmesi için mevcut startBtn kodunu şu şekilde güncelleyebilirsin:
-startBtn.addEventListener('click', (e) => {
-    e.preventDefault();
-
-    document.body.classList.add('scroll-active');
-    container.classList.add('active');
-
-    // filtreleri aktif et
-    document.body.classList.add('filters-active');
-
-    document.getElementById('movie-section')
-        .scrollIntoView({ behavior: 'smooth' });
-});
-
-const layout = document.querySelector('.layout');
-
-filterToggle.addEventListener('click', () => {
-    layout.classList.toggle('filters-open');
-});
-
-
-
-// --- EVENT LISTENERS ---
-openFavBtn.onclick = () => favSidebar.classList.add('active');
-closeSidebar.onclick = () => favSidebar.classList.remove('active');
-closeModalBtn.onclick = () => modal.classList.remove('active');
-form.oninput = (e) => {
-    const filtered = allMovies.filter(m => m.title.toLowerCase().includes(e.target.value.toLowerCase()));
-    showMovies(filtered);
-};
-startBtn.onclick = (e) => {
-    e.preventDefault();
-    document.body.classList.add('scroll-active');
-    container.classList.add('active');
-    document.getElementById('movie-section').scrollIntoView({ behavior: 'smooth' });
-};
