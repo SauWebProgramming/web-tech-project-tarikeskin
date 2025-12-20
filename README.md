@@ -21,6 +21,7 @@ TMDB API: Geniş kapsamlı film ve dizi veri kaynağı.
 Local Storage: Favori listesinin tarayıcı kapansa dahi korunması için yerel depolama.
 
 📖 Proje Yapısı
+
 index.html: Ana sayfa yapısı.
 
 style.css: Modern ve animasyonlu tasarım kodları.
